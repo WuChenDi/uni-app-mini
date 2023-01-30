@@ -4,9 +4,17 @@
       <view class="calendar-box">
         <view class="title">我的打卡记录</view>
         <view class="calendar-content">
-          <calendar :goNow="true" disabledTips="不在活动日期范围内" :defaultTime="defaultTime" :spotMap="spotMap"
-            :disabledDate="disabledDateFn" :changeTime="changeTime" @getDateList="getDateList" @selectDay="selectDay"
-            @openChange="openChange" />
+          <calendar
+            :goNow="true"
+            disabledTips="不在活动日期范围内"
+            :defaultTime="defaultTime"
+            :spotMap="spotMap"
+            :disabledDate="disabledDateFn"
+            :changeTime="changeTime"
+            @getDateList="getDateList"
+            @selectDay="selectDay"
+            @openChange="openChange"
+          />
         </view>
       </view>
     </view>
@@ -19,23 +27,23 @@ import calendar from './components/calendar.vue'
 export default {
   name: 'group-details',
   components: {
-    calendar
+    calendar,
   },
   data() {
     return {
       defaultTime: '',
       spotMap: {
         y2023m1d17: 'deep-spot',
-        y2023m1d10: 'spot'
+        y2023m1d10: 'spot',
       },
       // 需要改变日期时所使用的字段
       changeTime: '',
       // 存储已经获取过的日期
-      dateListMap: []
+      dateListMap: [],
     }
   },
   computed: {},
-  onLoad() { },
+  onLoad() {},
   async onShow() {
     // const date = new Date()
     // console.log(date.getFullYear())
@@ -77,8 +85,8 @@ export default {
     // 展开收起时的回调
     openChange({ detail }) {
       console.log(detail, 'openChange detail')
-    }
-  }
+    },
+  },
 }
 </script>
 

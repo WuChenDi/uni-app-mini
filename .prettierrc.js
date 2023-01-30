@@ -1,14 +1,14 @@
 module.exports = {
   singleQuote: true,
   printWidth: 120,
-  proseWrap: 'preserve',
+  proseWrap: 'never',
   endOfLine: 'lf',
   tabWidth: 2,
   useTabs: false,
-  trailingComma: 'none',
+  trailingComma: 'all',
   requirePragma: false,
   semi: false,
-  vueIndentScriptAndStyle: true,
+  // vueIndentScriptAndStyle: true,
   bracketSpacing: true,
   htmlWhitespaceSensitivity: 'css',
   quoteProps: 'as-needed',
@@ -18,14 +18,3 @@ module.exports = {
   jsxSingleQuote: true,
   jsxBracketSameLine: false,
 }
-
-// module.exports = {
-//   trailingComma: 'all',
-//   proseWrap: 'never',
-//   htmlWhitespaceSensitivity: 'strict',
-//   endOfLine: 'auto',
-//   arrowParens: 'avoid',
-//   printWidth: 80,
-//   semi: true,
-//   singleQuote: true,
-// };

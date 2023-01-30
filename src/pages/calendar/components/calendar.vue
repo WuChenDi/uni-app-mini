@@ -56,7 +56,7 @@
                   hasNowFnClass(item, nowDay),
                   hasNowMonthFnClass(item, selectDay),
                   hasSelectFnClass(item, calendar, oldCurrent, index),
-                  hasDisableFnClass(item, disabledDateList)
+                  hasDisableFnClass(item, disabledDateList),
                 ]"
                 @click.stop="selectChange"
                 :data-disabled="!!hasDisableFnClass(item, disabledDateList)"
@@ -90,7 +90,7 @@ export default {
       type: Object,
       default() {
         return {}
-      }
+      },
     },
     /**
      * 选中时间（不传默认为今日）
@@ -99,32 +99,32 @@ export default {
      */
     defaultTime: {
       type: String,
-      default: ''
+      default: '',
     },
     // 是否有快速回到今天的功能
     goNow: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 是否是打开状态
     defaultOpen: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 是否显示收缩展开功能
     showShrink: {
       type: Boolean,
-      default: true
+      default: true,
     },
     // 指定不可用日期
     disabledDate: Function,
     // 要改变的日期
     changeTime: {
       type: String,
-      default: ''
+      default: '',
     },
     // 点击禁止提示文案
-    disabledTips: String
+    disabledTips: String,
   },
   data() {
     return {
@@ -141,7 +141,7 @@ export default {
       swiperDuration: 500,
       swiperHeight: 0,
       backChange: false, // 跳过change切换
-      disabledDateList: {} // 禁用的日期集合
+      disabledDateList: {}, // 禁用的日期集合
     }
   },
   computed: {
@@ -150,7 +150,7 @@ export default {
       return [dateList0, dateList1, dateList2]
 
       // return Object.assign({}, dateList0, dateList1, dateList2)
-    }
+    },
   },
   watch: {
     // 重新设置打开状态
@@ -163,14 +163,14 @@ export default {
       if (!value) return
 
       this.witchDate(new Date(value))
-    }
+    },
   },
   created() {
     const now = this.defaultTime ? new Date(this.defaultTime) : new Date()
     this.nowDay = {
       year: new Date().getFullYear(),
       month: new Date().getMonth() + 1,
-      day: new Date().getDate()
+      day: new Date().getDate(),
     }
     this.setMonthFn(now.getFullYear(), now.getMonth() + 1, now.getDate(), true)
     this.updateList(now, -1, 0)
@@ -322,7 +322,7 @@ export default {
           setYear: this.selectDay.year,
           setMonth: this.open ? this.selectDay.month : this.selectDay.month - 1,
           setDay: this.selectDay.day + 7,
-          dateIndex: rest
+          dateIndex: rest,
         }
         this.open && delete result.setDay
 
@@ -338,7 +338,7 @@ export default {
           setYear: this.selectDay.year,
           setMonth: this.open ? this.selectDay.month - 2 : this.selectDay.month - 1,
           setDay: this.open ? this.selectDay.day - 7 : undefined,
-          dateIndex: rest
+          dateIndex: rest,
         }
         this.open && delete result.setDay
 
@@ -374,7 +374,7 @@ export default {
         setYear: appointMonth.getFullYear(),
         setMonth: appointMonth.getMonth() + 1,
         setDay: appointMonth.getDate(),
-        hasBack: true
+        hasBack: true,
       })
       const disabledDateList = {}
       if (this.disabledDate) {
@@ -410,7 +410,7 @@ export default {
       this.selectDay = {
         year: setYear,
         month: setMonth,
-        day: setDay || Math.min(new Date(setYear, setMonth, 0).getDate(), this.selectDay.day)
+        day: setDay || Math.min(new Date(setYear, setMonth, 0).getDate(), this.selectDay.day),
       }
       if ((this.selectDay.year !== setYear || this.selectDay.month !== setMonth) && !setDay) {
         this.open = !setDay
@@ -493,7 +493,7 @@ export default {
       this.selectDay = {
         year: setDate.getFullYear(),
         month: setDate.getMonth() + 1,
-        day: setDate.getDate()
+        day: setDate.getDate(),
       }
       if (isSyncCalendar) {
         this.calendar = this.selectDay
@@ -522,8 +522,8 @@ export default {
         setYear: this.selectDay.year,
         setMonth: this.selectDay.month,
         setDay: this.selectDay.day,
-        asBack: false
-      }
+        asBack: false,
+      },
     ) {
       // console.log('日历主体的渲染方法')
       // 需要遍历的日历数组数据
@@ -552,7 +552,7 @@ export default {
         obj = {
           day: now2.getDate(),
           month: now2.getMonth() + 1,
-          year: now2.getFullYear()
+          year: now2.getFullYear(),
         }
         dateList[i] = obj
       }
@@ -618,7 +618,7 @@ export default {
         setYear: setDate.getFullYear(),
         setMonth: setDate.getMonth(),
         setDay: setDate.getDate(),
-        dateIndex: index
+        dateIndex: index,
       }
       this.open && delete result.setDay
 
@@ -661,8 +661,8 @@ export default {
     afterYearFn() {
       const { year, month, day } = this.selectDay
       this.witchDate(new Date(year + 1, month - 1, day))
-    }
-  }
+    },
+  },
 }
 </script>
 

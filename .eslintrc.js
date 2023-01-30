@@ -39,7 +39,7 @@ module.exports = {
         allowTemplateLiterals: true,
       },
     ],
-    // 结尾必须有分号;
+    // 结尾不需要有分号;
     semi: [
       'error',
       'never',

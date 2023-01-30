@@ -19,3 +19,5 @@ dist
 .husky
 .local
 /bin
+
+/src/uni_modules

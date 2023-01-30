@@ -10,8 +10,12 @@
     <view class="demo-home-nav">
       <!-- <view class="demo-home-nav__title">基础组件</view> -->
       <view class="demo-home-nav__group">
-        <view v-for="(item, index) in baseListRef" class="demo-home-nav__block" @click="goDetailPage(item.pathName)"
-          :key="index">
+        <view
+          v-for="(item, index) in baseListRef"
+          class="demo-home-nav__block"
+          @click="goDetailPage(item.pathName)"
+          :key="index"
+        >
           {{ item.name }}
           <image class="common-arrow-right" src="https://cos.wshoto.com/marketing-wxapp/group-punch/a18.png" />
         </view>
@@ -26,7 +30,6 @@ import { ref } from 'vue'
 import Footer from '@/components/footer/index.vue'
 
 const title = ref('Hello, 业务开发记录一些组件')
-
 const baseListRef = ref([
   {
     pathName: 'calendar',
@@ -35,14 +38,14 @@ const baseListRef = ref([
   {
     pathName: 'live',
     name: 'live 自定义推流直播',
-  }
+  },
 ])
 
 const goDetailPage = (name: string) => {
   console.log(name)
 
   uni.navigateTo({
-    url: `/pages/${name}/index`
+    url: `/pages/${name}/index`,
   })
 }
 </script>
@@ -93,13 +96,13 @@ page {
 }
 
 .hello-text {
-  color: #7A7E83;
+  color: #7a7e83;
   font-size: 14px;
   line-height: 20px;
 }
 
 .hello-link {
-  color: #7A7E83;
+  color: #7a7e83;
   font-size: 14px;
   line-height: 20px;
 }
@@ -158,7 +161,7 @@ page {
   /* #endif */
   flex-direction: row;
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-top-style: solid;
   border-top-color: #f0f0f0;
   border-top-width: 1px;
@@ -185,7 +188,6 @@ page {
   font-size: 14px;
   font-weight: normal;
 }
-
 
 .demo-home__title {
   padding: 40px 0 100px 0;
