@@ -1,0 +1,31 @@
+module.exports = {
+  singleQuote: true,
+  printWidth: 120,
+  proseWrap: 'preserve',
+  endOfLine: 'lf',
+  tabWidth: 2,
+  useTabs: false,
+  trailingComma: 'none',
+  requirePragma: false,
+  semi: false,
+  vueIndentScriptAndStyle: true,
+  bracketSpacing: true,
+  htmlWhitespaceSensitivity: 'css',
+  quoteProps: 'as-needed',
+  arrowParens: 'always',
+  insertPragma: false,
+  bracketSameLine: false,
+  jsxSingleQuote: true,
+  jsxBracketSameLine: false,
+}
+
+// module.exports = {
+//   trailingComma: 'all',
+//   proseWrap: 'never',
+//   htmlWhitespaceSensitivity: 'strict',
+//   endOfLine: 'auto',
+//   arrowParens: 'avoid',
+//   printWidth: 80,
+//   semi: true,
+//   singleQuote: true,
+// };
