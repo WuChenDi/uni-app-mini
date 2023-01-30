@@ -38,8 +38,6 @@ const baseListRef = ref([
 ])
 
 const goDetailPage = (name: string) => {
-  console.log(name)
-
   uni.navigateTo({
     url: `/pages/${name}/index`,
   })
