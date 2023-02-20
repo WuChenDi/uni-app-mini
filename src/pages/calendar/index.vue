@@ -12,7 +12,7 @@
             :disabledDate="disabledDateFn"
             :changeTime="changeTime"
             @getDateList="getDateList"
-            @selectDay="selectDay"
+            @selectDay="selectDayFn"
             @openChange="openChange"
           />
         </view>
@@ -32,10 +32,7 @@ export default {
   data() {
     return {
       defaultTime: '',
-      spotMap: {
-        y2023m1d17: 'deep-spot',
-        y2023m1d10: 'spot',
-      },
+      spotMap: ['y2023m1d17', 'y2023m1d10'],
       // 需要改变日期时所使用的字段
       changeTime: '',
       // 存储已经获取过的日期
@@ -79,7 +76,7 @@ export default {
       return true
     },
     // 日期改变的回调
-    selectDay(detail) {
+    selectDayFn(detail) {
       console.log(detail, 'selectDay detail')
     },
     // 展开收起时的回调

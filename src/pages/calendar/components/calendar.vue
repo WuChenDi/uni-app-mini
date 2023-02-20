@@ -16,7 +16,7 @@
             class="today"
             @click="switchNowDate"
           >
-            今日
+            今天
           </view>
         </view>
         <view class="after">
@@ -45,7 +45,7 @@
         :current="swiperCurrent"
         :duration="swiperDuration"
       >
-        <swiper-item v-for="(list, index) in dateListComp" :key="index">
+        <swiper-item v-for="(list, index) in dateListComp" :key="index" @touchmove.stop>
           <!-- :style="{ height: (list.length / 7) * 82 + 'rpx' }" :data-height="list" -->
           <view class="flex-around flex-wrap calendar-main" :style="{ height: swiperHeight - 18 + 'rpx' }">
             <view v-for="(item, tIndex) in list" :key="tIndex" class="day" :class="open ? 'fold-day' : 'unfold-day'">
@@ -87,9 +87,9 @@ export default {
   props: {
     // 标点的日期
     spotMap: {
-      type: Object,
+      type: Array,
       default() {
-        return {}
+        return []
       },
     },
     /**
@@ -191,9 +191,8 @@ export default {
       if (item.month === selectDay.month) {
         // 通过年月日拼接的key来判断是否有标点
         let key = 'y' + item.year + 'm' + item.month + 'd' + item.day
-        if (spotMap[key]) {
+        if (spotMap.includes(key)) {
           return 'sign'
-          // return spotMap[key]
         }
       }
       return ''
@@ -418,10 +417,10 @@ export default {
 
       if (isSyncCalendar) {
         this.calendar = this.selectDay
+        this.$nextTick(() => {
+          this.triggerEventSelectDay()
+        })
       }
-      this.$nextTick(() => {
-        this.triggerEventSelectDay()
-      })
     },
     /**
      * 展开收起
@@ -523,7 +522,7 @@ export default {
         setMonth: this.selectDay.month,
         setDay: this.selectDay.day,
         asBack: false,
-      },
+      }
     ) {
       // console.log('日历主体的渲染方法')
       // 需要遍历的日历数组数据
@@ -584,24 +583,26 @@ export default {
         }
         if (!disabled) {
           this.selectDay.day = day
-          this.triggerEventSelectDay()
+          // this.triggerEventSelectDay()
         }
       } else if (this.selectDay.day !== day && !disabled) {
         this.selectDay = selectDay
-        this.triggerEventSelectDay()
+        // this.triggerEventSelectDay()
       }
       if (!disabled) {
         // 只有点击的时候才更新数据 calendar
         this.calendar = this.selectDay
+        this.triggerEventSelectDay()
       }
     },
     // 选择某天时触发的事件
     triggerEventSelectDay() {
-      if (
-        !this.disabledDateList['disabled' + this.selectDay.year + 'M' + this.selectDay.month + 'D' + this.selectDay.day]
-      ) {
-        this.$emit('selectDay', this.selectDay)
-      }
+      // if (
+      //   !this.disabledDateList['disabled' + this.selectDay.year + 'M' + this.selectDay.month + 'D' + this.selectDay.day]
+      // ) {
+      //   this.$emit('selectDay', this.selectDay)
+      // }
+      this.$emit('selectDay', this.selectDay)
     },
     /**
      * 更新日历列表
@@ -963,11 +964,13 @@ export default {
 
       // 禁止
       .disabled {
-        color: rgba(250, 96, 68, 0.5);
+        // color: rgba(250, 96, 68, 0.5);
+        opacity: 0.7;
       }
 
       .other-month {
-        color: rgba(250, 96, 68, 0.5);
+        // color: rgba(250, 96, 68, 0.5);
+        opacity: 0.7;
       }
     }
 
