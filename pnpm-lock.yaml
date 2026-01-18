@@ -106,7 +106,7 @@ importers:
         specifier: 66.0.0
         version: 66.0.0(postcss@8.5.6)(vite@5.4.21(@types/node@25.0.9)(sass@1.77.8)(terser@5.46.0))(vue@3.5.26(typescript@5.9.3))
       vite:
-        specifier: 5.4.21
+        specifier: ^5
         version: 5.4.21(@types/node@25.0.9)(sass@1.77.8)(terser@5.46.0)
       vue-tsc:
         specifier: ^3.2.2
