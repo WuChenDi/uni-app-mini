@@ -1,11 +1,12 @@
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
-import uni from '@dcloudio/vite-plugin-uni'
+import Uni from '@uni-helper/plugin-uni'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import UnoCSS from 'unocss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [uni(), vueJsx()],
+  plugins: [Uni(), vueJsx(), UnoCSS()],
   resolve: {
     // 配置别名
     alias: {
