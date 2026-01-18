@@ -49,11 +49,11 @@ const title = ref('Hello, 业务开发记录一些组件')
 const baseListRef = ref([
   {
     pathName: 'calendar',
-    name: 'calendar 日历组件',
+    name: 'Calendar 日历组件',
   },
   {
     pathName: 'live',
-    name: 'live 自定义推流直播',
+    name: 'Live 自定义推流直播',
   },
 ])
 
