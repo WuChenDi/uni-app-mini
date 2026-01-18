@@ -1,7 +1,19 @@
 {
-  "name": "uni-preset-vue",
-  "version": "0.0.0",
+  "name": "uni-app-mini",
   "type": "module",
+  "version": "1.1.2",
+  "private": true,
+  "packageManager": "pnpm@10.25.0",
+  "author": "wudi <wuchendi96@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/WuChenDi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WuChenDi/uni-app-mini.git"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "clean": "bash ./scripts/clean.sh",
     "dev:app": "uni -p app",
