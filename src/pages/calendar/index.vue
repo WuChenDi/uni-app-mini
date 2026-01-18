@@ -129,8 +129,11 @@ export default {
 
   .calendar-box {
     @include boxStyle('@/static/group-punch/a6.png');
-    height: auto;
-    margin-top: 0;
+
+    & {
+      height: auto;
+      margin-top: 0;
+    }
 
     .title {
       top: 30rpx;
