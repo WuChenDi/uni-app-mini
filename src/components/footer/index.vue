@@ -1,16 +1,16 @@
 <template>
   <view class="footer_container">
-    <uni-link :href="urlRef" :text="textRef"></uni-link>
+    <uni-link href="https://github.com/WuChenDi" text="wudi"></uni-link>
   </view>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-const urlRef = ref('https://github.com/WuChenDi')
-const textRef = ref('wudi')
+defineOptions({
+  name: 'Footer',
+})
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .footer_container {
   position: fixed;
   left: 0;
