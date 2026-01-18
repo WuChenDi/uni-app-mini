@@ -9,13 +9,13 @@
 		{
 			"path": "pages/calendar/index",
 			"style": {
-				"navigationBarTitleText": "calendar"
+				"navigationBarTitleText": "Calendar"
 			}
 		},
 		{
 			"path": "pages/live/index",
 			"style": {
-				"navigationBarTitleText": "live"
+				"navigationBarTitleText": "Live"
 			}
 		}
 	],
