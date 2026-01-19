@@ -2,6 +2,7 @@
 
 DIRS_TO_DELETE=(
   "node_modules"
+  "node-compile-cache"
   "dist"
 )
 

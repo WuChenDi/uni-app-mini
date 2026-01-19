@@ -1,34 +1,15 @@
-<template>
-  <view class="page-bg min-h-100vh relative">
-    <view class="group-details">
-      <view class="calendar-box relative w-702rpx mx-auto pt-126rpx pb-38rpx">
-        <view class="title absolute top-30rpx left-50% -translate-x-1/2 h-80rpx leading-80rpx text-28rpx font-500 text-#fa6044">
-          我的打卡记录
-        </view>
-        <view class="calendar-content px-24rpx bg-repeat-y">
-          <Calendar
-            :goNow="true"
-            disabledTips="不在活动日期范围内"
-            :defaultTime="defaultTime"
-            :spotMap="spotMap"
-            :disabledDate="disabledDateFn"
-            :changeTime="changeTime"
-            @getDateList="getDateList"
-            @selectDay="selectDayFn"
-            @openChange="openChange"
-          />
-        </view>
-      </view>
-    </view>
-  </view>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 import Calendar from './components/calendar.vue'
 
 defineOptions({
   name: 'GroupDetails',
+})
+
+definePage({
+  style: {
+    navigationBarTitleText: 'Calendar',
+  },
 })
 
 interface DateDetail {
@@ -84,6 +65,24 @@ const openChange = (open: boolean) => {
   console.log(open, 'openChange detail')
 }
 </script>
+
+<template>
+  <view class="page-bg min-h-100vh relative">
+    <view class="group-details">
+      <view class="calendar-box relative w-702rpx mx-auto pt-126rpx pb-38rpx">
+        <view
+          class="title absolute top-30rpx left-50% -translate-x-1/2 h-80rpx leading-80rpx text-28rpx font-500 text-#fa6044">
+          我的打卡记录
+        </view>
+        <view class="calendar-content px-24rpx bg-repeat-y">
+          <Calendar :goNow="true" disabledTips="不在活动日期范围内" :defaultTime="defaultTime" :spotMap="spotMap"
+            :disabledDate="disabledDateFn" :changeTime="changeTime" @getDateList="getDateList" @selectDay="selectDayFn"
+            @openChange="openChange" />
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
 
 <style lang="scss" scoped>
 .page-bg {

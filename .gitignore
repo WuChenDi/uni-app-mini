@@ -91,7 +91,6 @@ web_modules/
 *.tsbuildinfo
 next-env.d.ts
 
-
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
@@ -116,6 +115,11 @@ dist
 
 # vuepress build output
 .vuepress/dist
+
+# vitepress build output
+*/docs/docs/.vitepress/dist
+# vitepress cache
+*/docs/docs/.vitepress/cache
 
 # vuepress v2.x temp and cache directory
 .temp
@@ -160,3 +164,8 @@ dist
 
 collect_files.sh
 files_summary*.md
+
+src/types
+!src/types/auto-import.d.ts
+src/manifest.json
+src/pages.json
