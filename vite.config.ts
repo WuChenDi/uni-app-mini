@@ -15,10 +15,8 @@ import { defineConfig, loadEnv } from 'vite'
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   console.log('command, mode -> ', command, mode)
-  const { UNI_PLATFORM } = process.env
-  console.log('UNI_PLATFORM -> ', UNI_PLATFORM)
-
-  const env = loadEnv(mode, path.resolve(process.cwd(), 'env'))
+  console.log('UNI_PLATFORM -> ', process.env.UNI_PLATFORM)
+  const env = loadEnv(mode, path.resolve(__dirname, 'env'))
   console.log('环境变量 env -> ', env)
 
   return defineConfig({
