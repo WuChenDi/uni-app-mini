@@ -1,100 +1,3 @@
-<template>
-  <view class="calendar">
-    <view class="header bg-white rd-t-16rpx">
-      <view class="h-72rpx flex items-center">
-        <view class="flex items-center">
-          <view class="before-year w-32rpx h-32rpx" @click="beforeYearFn"></view>
-          <view class="before-month w-32rpx h-32rpx ml-16rpx" @click="beforeMonthFn"></view>
-        </view>
-
-        <view class="flex-1 center">
-          <view class="text-24rpx font-500 text-#222">
-            {{ selectDay.year }}年 {{ selectDay.month }}月
-          </view>
-          <view
-            v-if="
-              goNow &&
-              !(nowDay.year === selectDay.year && nowDay.month === selectDay.month && nowDay.day === selectDay.day)
-            "
-            class="today w-88rpx h-42rpx ml-40rpx rd-8rpx text-24rpx leading-42rpx text-white text-center"
-            @click="switchNowDate"
-          >
-            今天
-          </view>
-        </view>
-
-        <view class="flex items-center">
-          <view class="after-month w-32rpx h-32rpx mr-16rpx" @click="afterMonthFn"></view>
-          <view class="after-year w-32rpx h-32rpx" @click="afterYearFn"></view>
-        </view>
-      </view>
-    </view>
-
-    <view class="bg-#fff8f1 rd-12rpx">
-      <!-- 日历头部 -->
-      <view class="flex justify-around items-center leading-40rpx pt-16rpx pb-8rpx">
-        <view class="w-100rpx text-center text-24rpx text-#555">日</view>
-        <view class="w-100rpx text-center text-24rpx text-#555">一</view>
-        <view class="w-100rpx text-center text-24rpx text-#555">二</view>
-        <view class="w-100rpx text-center text-24rpx text-#555">三</view>
-        <view class="w-100rpx text-center text-24rpx text-#555">四</view>
-        <view class="w-100rpx text-center text-24rpx text-#555">五</view>
-        <view class="w-100rpx text-center text-24rpx text-#555">六</view>
-      </view>
-
-      <!-- 日历主体 -->
-      <swiper
-        class="transition-height duration-300"
-        :style="{ height: swiperHeight + 'rpx' }"
-        @change="handleSwiperChange"
-        :circular="true"
-        :current="swiperCurrent"
-        :duration="swiperDuration"
-      >
-        <swiper-item v-for="(list, index) in dateListComp" :key="index" @touchmove.stop>
-          <!-- :style="{ height: (list.length / 7) * 82 + 'rpx' }" :data-height="list" -->
-          <view
-            class="flex justify-around flex-wrap transition-height duration-300 content-start overflow-hidden"
-            :style="{ height: swiperHeight - 18 + 'rpx' }"
-          >
-            <view v-for="(item, tIndex) in list" :key="tIndex" class="flex justify-center w-90rpx relative text-center">
-              <view
-                class="day-bg center w-64rpx h-64rpx text-24rpx font-500 text-#fa6044 rd-50%"
-                :class="[
-                  open ? 'mb-24rpx' : 'mb-0',
-                  signFnClass(item, selectDay, spotMap),
-                  hasNowFnClass(item, nowDay),
-                  hasNowMonthFnClass(item, selectDay),
-                  hasSelectFnClass(item, calendar, oldCurrent, index),
-                  hasDisableFnClass(item, disabledDateList),
-                ]"
-                @click.stop="selectChange"
-                :data-disabled="!!hasDisableFnClass(item, disabledDateList)"
-                :data-day="item.day"
-                :data-year="item.year"
-                :data-month="item.month"
-              >
-                <!-- {{ !signFnClass(item, selectDay, spotMap) ? item.day : '' }} -->
-                {{ dayTextFn(item, index) }}
-              </view>
-            </view>
-          </view>
-        </swiper-item>
-      </swiper>
-
-      <!-- 展开收缩 -->
-      <view
-        v-if="showShrink"
-        @click.stop="openChange"
-        class="relative center h-48rpx bg-rgba-255-243-229/52 rd-8rpx text-24rpx font-400 text-#fa6044"
-      >
-        {{ open ? '收起日历' : '展开日历' }}
-        <view class="icon w-24rpx h-24rpx ml-8rpx transition-transform duration-300" :class="open ? 'rotate-180' : 'rotate-0'"></view>
-      </view>
-    </view>
-  </view>
-</template>
-
 <script setup lang="ts">
 import { ref, computed, watch, nextTick, onMounted } from 'vue'
 
@@ -537,6 +440,83 @@ const afterYearFn = () => {
   witchDate(new Date(year + 1, month - 1, day))
 }
 </script>
+
+<template>
+  <view class="calendar">
+    <view class="header bg-white rd-t-16rpx">
+      <view class="h-72rpx flex items-center">
+        <view class="flex items-center">
+          <view class="before-year w-32rpx h-32rpx" @click="beforeYearFn"></view>
+          <view class="before-month w-32rpx h-32rpx ml-16rpx" @click="beforeMonthFn"></view>
+        </view>
+
+        <view class="flex-1 center">
+          <view class="text-24rpx font-500 text-#222">
+            {{ selectDay.year }}年 {{ selectDay.month }}月
+          </view>
+          <view v-if="
+            goNow &&
+            !(nowDay.year === selectDay.year && nowDay.month === selectDay.month && nowDay.day === selectDay.day)
+          " class="today w-88rpx h-42rpx ml-40rpx rd-8rpx text-24rpx leading-42rpx text-white text-center"
+            @click="switchNowDate">
+            今天
+          </view>
+        </view>
+
+        <view class="flex items-center">
+          <view class="after-month w-32rpx h-32rpx mr-16rpx" @click="afterMonthFn"></view>
+          <view class="after-year w-32rpx h-32rpx" @click="afterYearFn"></view>
+        </view>
+      </view>
+    </view>
+
+    <view class="bg-#fff8f1 rd-12rpx">
+      <!-- 日历头部 -->
+      <view class="flex justify-around items-center leading-40rpx pt-16rpx pb-8rpx">
+        <view class="w-100rpx text-center text-24rpx text-#555">日</view>
+        <view class="w-100rpx text-center text-24rpx text-#555">一</view>
+        <view class="w-100rpx text-center text-24rpx text-#555">二</view>
+        <view class="w-100rpx text-center text-24rpx text-#555">三</view>
+        <view class="w-100rpx text-center text-24rpx text-#555">四</view>
+        <view class="w-100rpx text-center text-24rpx text-#555">五</view>
+        <view class="w-100rpx text-center text-24rpx text-#555">六</view>
+      </view>
+
+      <!-- 日历主体 -->
+      <swiper class="transition-height duration-300" :style="{ height: swiperHeight + 'rpx' }"
+        @change="handleSwiperChange" :circular="true" :current="swiperCurrent" :duration="swiperDuration">
+        <swiper-item v-for="(list, index) in dateListComp" :key="index" @touchmove.stop>
+          <!-- :style="{ height: (list.length / 7) * 82 + 'rpx' }" :data-height="list" -->
+          <view class="flex justify-around flex-wrap transition-height duration-300 content-start overflow-hidden"
+            :style="{ height: swiperHeight - 18 + 'rpx' }">
+            <view v-for="(item, tIndex) in list" :key="tIndex" class="flex justify-center w-90rpx relative text-center">
+              <view class="day-bg center w-64rpx h-64rpx text-24rpx font-500 text-#fa6044 rd-50%" :class="[
+                open ? 'mb-24rpx' : 'mb-0',
+                signFnClass(item, selectDay, spotMap),
+                hasNowFnClass(item, nowDay),
+                hasNowMonthFnClass(item, selectDay),
+                hasSelectFnClass(item, calendar, oldCurrent, index),
+                hasDisableFnClass(item, disabledDateList),
+              ]" @click.stop="selectChange" :data-disabled="!!hasDisableFnClass(item, disabledDateList)"
+                :data-day="item.day" :data-year="item.year" :data-month="item.month">
+                <!-- {{ !signFnClass(item, selectDay, spotMap) ? item.day : '' }} -->
+                {{ dayTextFn(item, index) }}
+              </view>
+            </view>
+          </view>
+        </swiper-item>
+      </swiper>
+
+      <!-- 展开收缩 -->
+      <view v-if="showShrink" @click.stop="openChange"
+        class="relative center h-48rpx bg-rgba-255-243-229/52 rd-8rpx text-24rpx font-400 text-#fa6044">
+        {{ open ? '收起日历' : '展开日历' }}
+        <view class="icon w-24rpx h-24rpx ml-8rpx transition-transform duration-300"
+          :class="open ? 'rotate-180' : 'rotate-0'"></view>
+      </view>
+    </view>
+  </view>
+</template>
 
 <style lang="scss" scoped>
 // 背景图片样式

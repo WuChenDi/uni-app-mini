@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Calendar from './components/calendar.vue'
+import Calendar from '@/components/calendar/index.vue'
 
 defineOptions({
   name: 'GroupDetails',
